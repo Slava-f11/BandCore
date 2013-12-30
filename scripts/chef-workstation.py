@@ -1,13 +1,16 @@
 #! /usr/bin/env python
+__author__ = 'slava'
+#! /usr/bin/env python
+
 from shutil import copyfile
 import os
 import sys
 
-SERVER_HOME = "../nodes/chef-server"
+SERVER_HOME = "../nodes/chef-workstation"
 
 
 def restoreServer():
-    os.system("vagrant box remove ubuntuServer virtualbox")
+    os.system("vagrant box remove workstation virtualbox")
     emptyBoxRef = "../nodes/box/UbuntuServer12.04amd64.box"
     destBoxRef = SERVER_HOME + "/VM.box"
     copyfile(emptyBoxRef, destBoxRef)
@@ -38,15 +41,15 @@ for command in sys.argv:
         runServer()
         break
     elif command == "restore":
-        restoreServer()    
+        restoreServer()
         break
     elif command == "halt":
         halt_server()
         break
     elif command == "destroy":
-        destroyServer()    
+        destroyServer()
         break
     elif command == "ssh":
-        sshServer()    
+        sshServer()
         break
 

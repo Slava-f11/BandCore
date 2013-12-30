@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntuServer"
+  config.vm.box = "workstation"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network :private_network, ip: "192.168.33.10"
+  config.vm.network :private_network, ip: "192.168.33.11"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -78,7 +78,8 @@ Vagrant.configure("2") do |config|
   #
    config.vm.provision :chef_solo do |chef|
      chef.cookbooks_path = "cookbooks"
-     chef.add_recipe "chef-server::default"
+     chef.add_recipe "chef-workstation::install-chef-workstation"
+     chef.add_recipe "chef-workstation::configure-chef-workstation"
   
      # You may also specify custom JSON attributes:
      chef.json = { :mysql_password => "foo" }
