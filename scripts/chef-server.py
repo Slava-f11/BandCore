@@ -33,20 +33,15 @@ def sshServer():
     os.system("cd " + SERVER_HOME + "; vagrant ssh;")
 
 
-for command in sys.argv:
+for command in sys.argv: 
     if command == "up":
         runServer()
-        break
     elif command == "restore":
         restoreServer()    
-        break
     elif command == "halt":
         halt_server()
-        break
     elif command == "destroy":
-        destroyServer()    
-        break
+        destroyServer()   
     elif command == "ssh":
-        sshServer()    
-        break
+        sshServer()  
 

@@ -6,6 +6,25 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+directory "/home/vagrant/.ssh" do
+    owner "vagrant" 
+    group "vagrant"
+    mode 0700 
+    action :create
+end
+
+cookbook_file "/home/vagrant/.ssh/authorized_keys" do
+    mode 0644
+    owner "vagrant" 
+    group "vagrant"
+    source "authorized_keys"
+    action :create
+end
+
+execute "restart-ssh" do
+	command "sudo service ssh restart"
+end
+
 cookbook_file "/tmp/chef-server.deb" do
   source "chef-server.deb"
   action :create_if_missing

@@ -39,17 +39,12 @@ def sshServer():
 for command in sys.argv:
     if command == "up":
         runServer()
-        break
     elif command == "restore":
         restoreServer()
-        break
     elif command == "halt":
         halt_server()
-        break
     elif command == "destroy":
         destroyServer()
-        break
     elif command == "ssh":
         sshServer()
-        break
 
