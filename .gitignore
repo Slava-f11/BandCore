@@ -5,6 +5,7 @@
 ###
 chef-repo/.chef/*.pem
 *.box
+*~
 *.deb
 *.iml
 **/.vagrant/**/**
