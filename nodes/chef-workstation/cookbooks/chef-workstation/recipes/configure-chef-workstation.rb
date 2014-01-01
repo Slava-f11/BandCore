@@ -5,6 +5,13 @@ directory "/home/vagrant/.chef" do
     action :create
 end
 
+directory "/home/vagrant/.chef/checksums" do
+    owner "vagrant"
+    group "vagrant"
+    mode "777"
+    action :create
+end
+
 directory "/home/vagrant/.ssh" do
     owner "vagrant" 
     group "vagrant"
@@ -36,10 +43,27 @@ cookbook_file "/home/vagrant/.ssh/known_hosts" do
     action :create
 end
 
-#execute "get admin pem" do
-#	command "sshpass -p vagrant scp vagrant@192.168.33.10:/etc/chef-server/admin.pem ~/.chef"
-#end
+cookbook_file "/home/vagrant/.chef/knife.rb" do
+    mode 0644
+    owner "vagrant"
+    group "vagrant"
+    source "knife.rb"
+    action :create
+end
 
-#execute "get validation pem" do
-#	command "sshpass -p vagrant scp vagrant@192.168.33.10:/etc/chef-server/chef-validator.pem ~/.chef"
-#end
+cookbook_file "/home/vagrant/.chef/vagrant.pem" do
+    mode 0644
+    owner "vagrant"
+    group "vagrant"
+    source "vagrant.pem"
+    action :create
+end
+
+bash "copy_pems_from_server" do
+    user "vagrant"
+    cwd "/home/vagrant"
+    code <<-EOH
+    scp vagrant@192.168.33.10:/etc/chef-server/admin.pem .chef
+    scp vagrant@192.168.33.10:/etc/chef-server/chef-validator.pem .chef
+    EOH
+end
