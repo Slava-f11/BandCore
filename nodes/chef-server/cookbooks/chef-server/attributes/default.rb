@@ -1,1 +1,2 @@
-default["chef_server_home"] = "/home/vagrant"
+default["chef_server"]["owner"] = "vagrant"
+default["chef_server"]["home"] = "/home/vagrant"

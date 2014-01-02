@@ -6,17 +6,17 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-directory "#{node["chef_server_home"]}/.ssh" do
-  owner "vagrant"
-  group "vagrant"
+directory "#{node["chef_server"]["home"]}/.ssh" do
+  owner node["chef_server"]["owner"]
+  group node["chef_server"]["owner"]
   mode 0700
   action :create
 end
 
-cookbook_file "/home/vagrant/.ssh/authorized_keys" do
+cookbook_file "#{node["chef_server"]["home"]}/.ssh/authorized_keys" do
   mode 0644
-  owner "vagrant"
-  group "vagrant"
+  owner node["chef_server"]["owner"]
+  group node["chef_server"]["owner"]
   source "authorized_keys"
   action :create
 end
@@ -41,11 +41,11 @@ execute "configure-server" do
 end
 
 file "/etc/chef-server/admin.pem" do
-  owner "vagrant"
+  owner node["chef_server"]["owner"]
   mode 777
 end
 
 file "/etc/chef-server/chef-validator.pem" do
-  owner "vagrant"
+  owner node["chef_server"]["owner"]
   mode 777
 end
