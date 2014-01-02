@@ -80,7 +80,9 @@ Vagrant.configure("2") do |config|
      chef.cookbooks_path = "cookbooks"
      chef.add_recipe "chef-workstation::install-chef-workstation"
      chef.add_recipe "chef-workstation::configure-chef-workstation"
-  
+     chef.add_recipe "chef-workstation::bootstrap-application-node"
+     chef.add_recipe "chef-workstation::bootstrap-database-node"
+
      # You may also specify custom JSON attributes:
      chef.json = { :mysql_password => "foo" }
    end
