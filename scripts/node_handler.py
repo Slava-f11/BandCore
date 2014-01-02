@@ -41,7 +41,7 @@ class NodeHandler:
 
 
     def destroy_server(self):
-        os.system("cd " + self.server_home + "; vagrant destroy;")
+        os.system("cd " + self.server_home + "; vagrant destroy --force;")
 
 
     def ssh_server(self):

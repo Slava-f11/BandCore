@@ -25,11 +25,7 @@ def halt_server():
 
 
 def destroyServer():
-    os.system("cd " + SERVER_HOME + "; vagrant destroy;")
-
-
-def destroyServer():
-    os.system("cd " + SERVER_HOME + "; vagrant destroy;")
+    os.system("cd " + SERVER_HOME + "; vagrant destroy --force;")
 
 
 def sshServer():
