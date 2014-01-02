@@ -1,35 +1,51 @@
 #
-# Cookbook Name:: getting-started
+# Cookbook Name:: test
 # Recipe:: default
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2013, YOUR_COMPANY_NAME
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-# 
-#     http://www.apache.org/licenses/LICENSE-2.0
-# 
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# All rights reserved - Do Not Redistribute
 #
+directory "#{node["chef_server_home"]}/.ssh" do
+  owner "vagrant"
+  group "vagrant"
+  mode 0700
+  action :create
+end
 
-cookbook_file "chef-server.deb" do
-  path "/tmp"
+cookbook_file "/home/vagrant/.ssh/authorized_keys" do
+  mode 0644
+  owner "vagrant"
+  group "vagrant"
+  source "authorized_keys"
+  action :create
+end
+
+execute "restart-ssh" do
+  command "sudo service ssh restart"
+end
+
+cookbook_file "/tmp/chef-server.deb" do
   source "chef-server.deb"
-  action :create_if_messing
+  action :create_if_missing
 end
 
-cookbook_file "chef-server.deb" do
-  path "/vagrant/home"
-  source "chef-server.deb"
-  action :create_if_messing
+package "chef-server" do
+  provider Chef::Provider::Package::Dpkg
+  action :install
+  source "/tmp/chef-server.deb"
 end
 
-execute "instaa-server" do
-	commad "sudo dpkg -i /tmp/chef-server.deb"
+execute "configure-server" do
+  command "sudo chef-server-ctl reconfigure"
 end
 
+file "/etc/chef-server/admin.pem" do
+  owner "vagrant"
+  mode 777
+end
+
+file "/etc/chef-server/chef-validator.pem" do
+  owner "vagrant"
+  mode 777
+end

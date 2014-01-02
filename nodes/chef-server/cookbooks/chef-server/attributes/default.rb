@@ -1,0 +1,1 @@
+default["chef_server_home"] = "/home/vagrant"
