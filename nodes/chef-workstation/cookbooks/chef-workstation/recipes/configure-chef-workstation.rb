@@ -43,22 +43,6 @@ cookbook_file "#{node["chef_workstation"]["home"]}/.ssh/known_hosts" do
     action :create
 end
 
-cookbook_file "#{node["chef_workstation"]["home"]}/.chef/knife.rb" do
-    mode 0644
-    owner node["chef_workstation"]["owner"]
-    group node["chef_workstation"]["owner"]
-    source "knife.rb"
-    action :create
-end
-
-cookbook_file "#{node["chef_workstation"]["home"]}/.chef/vagrant.pem" do
-    mode 0644
-    owner node["chef_workstation"]["owner"]
-    group node["chef_workstation"]["owner"]
-    source "vagrant.pem"
-    action :create
-end
-
 bash "copy_pems_from_server" do
     user node["chef_workstation"]["owner"]
     cwd node["chef_workstation"]["home"]
@@ -66,4 +50,22 @@ bash "copy_pems_from_server" do
     scp vagrant@192.168.33.10:/etc/chef-server/admin.pem .chef
     scp vagrant@192.168.33.10:/etc/chef-server/chef-validator.pem .chef
     EOH
+end
+
+bash "create_workstation_user" do
+  user node["chef_workstation"]["owner"]
+  cwd node["chef_workstation"]["home"]
+  code <<-EOH
+knife configure -i << 'END'
+#{node["chef_workstation"]["home"]}/.chef/knife.rb
+https://chefserver.bandbook.com
+chefworkstation
+admin
+/home/vagrant/.chef/admin.pem
+chef-validator
+/home/vagrant/.chef/chef-validator.pem
+
+END
+echo "cookbook_path    'cookbooks'" >> #{node["chef_workstation"]["home"]}/.chef/knife.rb
+  EOH
 end

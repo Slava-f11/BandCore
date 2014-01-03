@@ -36,6 +36,9 @@ package "chef-server" do
   source "/tmp/chef-server.deb"
 end
 
+execute "sudo hostname #{node["chef_server"]["fqdn"]}"
+execute "echo #{node["chef_server"]["fqdn"]} | sudo tee /etc/hostname"
+
 execute "configure-server" do
   command "sudo chef-server-ctl reconfigure"
 end
