@@ -1,2 +1,1 @@
-package "sshpass"
 package "mc"
