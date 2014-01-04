@@ -1,7 +1,9 @@
 @(message: String)
 
 @main("Welcome to Play") {
-
-    @play20.welcome(message)
-
+    <div ng-controller="HelloCntl">
+        Your name: <input type="text" ng-model="name"/>
+        <hr/>
+        Hello {{name || "World"}}!
+    </div>
 }
