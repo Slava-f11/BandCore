@@ -3,7 +3,7 @@ bash "bootstrap_database" do
   cwd node["chef_workstation"]["home"]
   code <<-EOH
       mkdir cookbooks
-      knife cookbook site download mongodb -f mongodb.tar.gz
+      knife cookbook site download mongodb 0.13.4 -f mongodb.tar.gz
       tar xzvf mongodb.tar.gz -C cookbooks/
       rm mongodb.tar.gz
 

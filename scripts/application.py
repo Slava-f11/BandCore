@@ -6,6 +6,8 @@ handler = NodeHandler("application", "192.168.33.13")
 for command in sys.argv:
     if command == "up":
         handler.run_server()
+    elif command == "vagrantfile":
+        handler.create_vagrantfile()
     elif command == "restore":
         handler.restore_server()
     elif command == "halt":

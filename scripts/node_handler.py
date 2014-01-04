@@ -12,15 +12,16 @@ class NodeHandler:
 
     def restore_server(self):
         os.system("vagrant box remove " + self.name + " virtualbox")
-        initial_vagrant_file_url = "../nodes/box/Vagrantfile"
-        destVagrantFileURL = self.server_home + "/Vagrantfile"
         emptyBoxRef = "../nodes/box/UbuntuServer12.04amd64.box"
         destBoxRef = self.server_home + "/VM.box"
         copyfile(emptyBoxRef, destBoxRef)
+
+    def create_vagrantfile(self):
+        initial_vagrant_file_url = "../nodes/box/Vagrantfile"
+        destVagrantFileURL = self.server_home + "/Vagrantfile"
         copyfile(initial_vagrant_file_url, destVagrantFileURL)
         initialVagrantFile = open(initial_vagrant_file_url)
         destVagrantFile = open(destVagrantFileURL, "w")
-
         replacements = {'config.vm.box =': 'config.vm.box = "' + self.name + '"',
                         'config.vm.network :private_network, ip:':
                             'config.vm.network :private_network, ip: "' + self.ip + '"'}
@@ -30,7 +31,6 @@ class NodeHandler:
             destVagrantFile.write(line)
         initialVagrantFile.close()
         destVagrantFile.close()
-
 
     def run_server(self):
         os.system("cd " + self.server_home + "; vagrant up;")

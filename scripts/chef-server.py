@@ -1,43 +1,18 @@
 #! /usr/bin/env python
-from shutil import copyfile
-import os
+from node_handler import NodeHandler
 import sys
 
-SERVER_HOME = "../nodes/chef-server"
-
-
-def restoreServer():
-    os.system("vagrant box remove ubuntuServer virtualbox")
-    emptyBoxRef = "../nodes/box/UbuntuServer12.04amd64.box"
-    destBoxRef = SERVER_HOME + "/VM.box"
-    copyfile(emptyBoxRef, destBoxRef)
-
-
-def runServer():
-    os.system("cd " + SERVER_HOME + "; vagrant up;")
-
-
-def halt_server():
-    os.system("cd " + SERVER_HOME + "; vagrant halt;")
-
-
-def destroyServer():
-    os.system("cd " + SERVER_HOME + "; vagrant destroy --force;")
-
-
-def sshServer():
-    os.system("cd " + SERVER_HOME + "; vagrant ssh;")
-
-
-for command in sys.argv: 
+handler = NodeHandler("chef-server", "192.168.33.10")
+for command in sys.argv:
     if command == "up":
-        runServer()
+        handler.run_server()
+    elif command == "vagrantfile":
+        handler.create_vagrantfile()
     elif command == "restore":
-        restoreServer()    
+        handler.restore_server()
     elif command == "halt":
-        halt_server()
+        handler.halt_server()
     elif command == "destroy":
-        destroyServer()   
+        handler.destroy_server()
     elif command == "ssh":
-        sshServer()  
-
+        handler.ssh_server()

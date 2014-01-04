@@ -2,8 +2,8 @@
 
 up() {
     up_chef_server
-    up_application
     up_database
+    up_application
     up_chef_workstation
 }
 
