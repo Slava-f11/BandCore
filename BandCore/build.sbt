@@ -6,6 +6,8 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache
-)     
+)
+
+libraryDependencies += "org.mongodb" %% "casbah" % "2.6.3"
 
 play.Project.playScalaSettings
