@@ -2,6 +2,8 @@ package controllers
 
 import play.api.mvc._
 import com.mongodb.casbah.Imports._
+import play.libs.Json
+import com.fasterxml.jackson.databind.node.ObjectNode
 
 object Application extends Controller {
 
@@ -17,4 +19,15 @@ object Application extends Controller {
     coll.insert(obj)
     Ok(coll.findOne(obj).toString)
   }
+
+  def getData() = Action {
+    val json: ObjectNode = Json.newObject()
+    json.put("name", "Stepa")
+    json.put("gender", "male")
+    Ok(json.toString)
+  }
+}
+
+object enum extends Enumeration {
+  val A, B, C = Value
 }
