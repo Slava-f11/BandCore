@@ -18,4 +18,8 @@ testControllers.controller('BandController', function($scope, $http){
 
 testControllers.controller('AddUserController', function($scope, $routeParams){
     $scope.title = "Add user!" + $routeParams.id
+
+    $scope.setTitle = function(title){
+        $scope.title = title;
+    }
 });
