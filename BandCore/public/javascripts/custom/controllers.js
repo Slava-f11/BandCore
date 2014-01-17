@@ -4,11 +4,12 @@ testControllers.controller('HelloCntl', function($scope){
     $scope.name = 'World'
 });
 
-testControllers.controller('BandController', function($scope, $http){
+testControllers.controller('BandController', function($scope, $http, Stuff){
 
-    $http.get("/getData").success(function(data){
-        $scope.name = data;
-    });
+//    $http.get("/getData").success(function(data){
+//        $scope.name = data;
+//    });
+    $scope.name = Stuff.query();
     $scope.stuff = [
         {'name': 'Slava'},
         {'name': 'Dima'}

@@ -5,7 +5,7 @@ function HelloCntl($scope) {
     $scope.name = 'World';
 }
 
-var bandProfileApp = angular.module('bandProfileApp', ["ngRoute", "testControllers", "filtersApp"]);
+var bandProfileApp = angular.module('bandProfileApp', ["ngRoute", "testControllers", "filtersApp", "testServices"]);
 
 bandProfileApp.config(["$routeProvider", function($routeProvider){
     $routeProvider.
