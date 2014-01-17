@@ -1,6 +1,6 @@
 <div>
     <p ng-controller="BandController">
         Query: <input type="text" ng-model="query"/>
-        The band is {{name}} and the stuff are <span ng-repeat="s in stuff | filter:query">{{s.name}}</span>
+        The band is {{name}} and the stuff are <span ng-repeat="s in stuff | filter:query">{{s.name | testFilter}}</span>
     </p>
 </div>
