@@ -10,11 +10,20 @@ import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import config.MongoConfig
 import org.springframework.data.mongodb.core.MongoOperations
+import com.bankbook.service.PlayerService
+import org.springframework.beans.factory.annotation.Autowired
 
 object Application extends Controller {
 
+  @Autowired
+  var privateService: PlayerService = _
+
   def index = Action {
     Ok(views.html.index("Your new application is ready."))
+  }
+
+  def home = Action {
+    Ok(views.html.home())
   }
 
   def something(i: Int) = Action {
@@ -26,6 +35,7 @@ object Application extends Controller {
     mongoOps.save(passionMark, "bands")
     val query: Query = new Query(Criteria where "name" is "Passion Mark")
     val band: Band = mongoOps.findOne(query, classOf[Band], "bands")
+    privateService.create("Slavabbb")
     Ok(band.toString)
   }
 

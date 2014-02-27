@@ -1,0 +1,28 @@
+<html ng-app="bandProfileApp">
+<head>
+    <title>Welcome to play</title>
+    <link rel="stylesheet" media="screen" href="/customized/stylesheets/main.css">
+    <link rel="shortcut icon" type="image/png" href="/customized/images/favicon.png">
+    <script src="/customized/javascripts/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <script src="http://code.angularjs.org/1.2.7/angular.min.js"></script>
+    <script src="http://code.angularjs.org/1.2.7/angular-route.min.js"></script>
+    <script src="http://code.angularjs.org/1.2.7/angular-resource.min.js"></script>
+    <script src="/customized/javascripts/custom/filters.js" type="text/javascript"></script>
+    <script src="/customized/javascripts/custom/services.js" type="text/javascript"></script>
+    <script src="/customized/javascripts/custom/controllers.js" type="text/javascript"></script>
+    <script src="/customized/javascripts/custom/helloworld.js" type="text/javascript"></script>
+</head>
+<body>
+<div ng-controller="HelloCntl">
+    Your name: <input type="text" ng-model="name"/>
+    Your last name: <input type="text" ng-model="lastName"/>
+
+    <hr/>
+    Hello {{name || "World"}} {{ lastName }}!
+</div>
+<div ng-view=""></div>
+<a href="#/home">Home</a>
+<a href="#/add/2">Add user</a>
+
+</body>
+</html>

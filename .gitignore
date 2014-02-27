@@ -10,3 +10,5 @@ chef-repo/.chef/*.pem
 *.iml
 **/.vagrant/**/**
 **/.idea/**/**
+**/build/**/**
+**/.gradle/**/**

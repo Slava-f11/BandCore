@@ -15,6 +15,8 @@ libraryDependencies ++= Seq(
   "org.springframework" % "spring-core" % "3.0.5.RELEASE",
   "org.springframework" % "spring-context" % "3.0.5.RELEASE",
   "org.springframework.data" % "spring-data-mongodb" % "1.3.3.RELEASE",
+  "org.springframework.security" % "spring-security-web" % "3.2.0.RELEASE",
+  "org.springframework.security" % "spring-security-config" % "3.2.0.RELEASE",
   "cglib" % "cglib" % "2.2"
 )
 
