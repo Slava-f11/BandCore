@@ -11,6 +11,7 @@ public class MainRest {
 
     @GET
     public String getSomething(){
+        PersonList personList = new PersonList();
         return "{\"name\":\"Stepa\", \"gender\": \"male\"}";
     }
 }
