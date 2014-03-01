@@ -10,11 +10,11 @@ var bandProfileApp = angular.module('bandProfileApp', ["ngRoute", "testControlle
 bandProfileApp.config(["$routeProvider", function($routeProvider){
     $routeProvider.
         when('/add/:id', {
-            templateUrl: '/customized/templates/add-user.html',
+            templateUrl: '/web/templates/add-user.html',
             controller: 'AddUserController'
         }).
         when('/home', {
-            templateUrl: '/customized/templates/hello-world.html',
+            templateUrl: '/web/templates/hello-world.html',
             controller: 'BandController'
         }).
         otherwise({

@@ -4,7 +4,7 @@
 var testServices = angular.module("testServices", ['ngResource']);
 
 testServices.factory("Stuff", ['$resource', function($resource){
-    return $resource('/customized/rest/getData', {}, {
+    return $resource('/web/rest/getData', {}, {
         query: {method: 'GET'}
     })
 }]);

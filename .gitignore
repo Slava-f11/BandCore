@@ -12,3 +12,4 @@ chef-repo/.chef/*.pem
 **/.idea/**/**
 **/build/**/**
 **/.gradle/**/**
+**/out/**/**

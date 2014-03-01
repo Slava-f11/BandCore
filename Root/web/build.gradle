@@ -31,6 +31,8 @@ dependencies {
     testCompile "junit:junit:4.11"
     moreLibs ":otherLib:1.0"
 
+    compile project(":common")
+
     compile 'javax.ws.rs:jsr311-api:1.1-ea'
     compile group: 'com.sun.jersey', name: 'jersey-core', version: jerseyVersion
     compile group: 'com.sun.jersey', name: 'jersey-server', version: jerseyVersion

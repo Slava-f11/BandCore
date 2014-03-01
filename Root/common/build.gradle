@@ -1,4 +1,3 @@
-apply plugin: 'java'
 apply plugin: 'scala'
 
 sourceCompatibility = 1.5
